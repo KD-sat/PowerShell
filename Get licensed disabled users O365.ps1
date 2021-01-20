@@ -1,2 +1,2 @@
 Connect-MsolService
-Get-MsolUser -All -EnabledFilter DisabledOnly | where {$_.isLicensed -eq $true} | select DisplayName,UserPrincipalName,BlockCredential,Islicensed
+Get-MsolUser -All -EnabledFilter DisabledOnly | Where-Object {$_.isLicensed -eq $true} | Select-Object DisplayName,UserPrincipalName,BlockCredential,Islicensed
