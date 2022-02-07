@@ -30,6 +30,6 @@ ForEach ($User in $Users) {
     $Report.Add($ReportLine) 
 }
 
-Write-Host "Report is in c:\temp\MFAUsers.CSV"
+Write-Host "Exporting Report"
 $Report | Select User, Name, MFAUsed, MFAMethod, PhoneNumber | Sort Name | Out-GridView
-$Report | Sort Name | Export-CSV -NoTypeInformation -Encoding UTF8 C:\Users\Kamil.Dziama\Documents\mfareport.csv
+$Report | Sort Name | Export-CSV -NoTypeInformation -Encoding UTF8 filepath
