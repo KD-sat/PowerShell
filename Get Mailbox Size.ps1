@@ -1,1 +1,1 @@
-Get-mailbox -ResultSize unlimited | Get-MailboxStatistics | SELECT displayname, totalitemsize | export-csv -LiteralPath path
+Get-mailbox -ResultSize unlimited | Get-MailboxStatistics | SELECT displayname, totalitemsize | export-csv -LiteralPath #path

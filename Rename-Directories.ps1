@@ -1,6 +1,6 @@
 ﻿
 $changes = Import-Csv .\changes.csv
-$dir = "change this to the directory path required"
+$dir = #change this to the directory path required
 cd $dir
 $changes | ForEach-object {
 write-host "renaming " $($_.origDirName) "to " $($_.NewDirName)
