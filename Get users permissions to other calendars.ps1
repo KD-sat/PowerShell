@@ -3,7 +3,7 @@
         -User target email address -ErrorAction SilentlyContinue | ForEach-Object {
         [PSCustomObject]@{
             Identity     = $mailbox.Identity
-            User         = $_.User
+            User         = $_.User.Identity
             AccessRights = $_.Accessrights
             SharingPermissionFlags =$_.SharingPermissionFlags
         }
