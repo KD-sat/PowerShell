@@ -12,14 +12,11 @@ $upn = @()
 foreach ($mail in $mailnickname) {
     $upn += "$mail@notideal.co.uk"
 }
-$passwords = @()
 
 # Generating passwords to use with the accounts
-$uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-$lowercase = "abcdefghijklmnopqrstuvwxyz"
-$numbers = "0123456789"
-$symbols = "!@#$%^&*()"
-$allChars = $uppercase + $lowercase + $numbers + $symbols
+$passwords = @()
+
+$allChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()"
 
 for ($i = 0; $i -lt 50; $i++) {
     $password = -join ((1..16) | ForEach-Object { $allChars[(Get-Random -Maximum $allChars.Length)] })
@@ -33,12 +30,16 @@ $params = @{
 	mailNickname = $mailNickname
 	userPrincipalName = $upn
 	forceChangePasswordNextSignIn = $true
-	password = $passwords
-	
+	passwordProfile = @{
+		forceChangePasswordNextSignIn = $true
+		password = $passwords
+	}	
 }
 
 Import-Module Microsoft.Graph.Users
 
+#Connect-MgGraph
 
-
-Connect-MgGraph
+for ($i = 0; $i++) {
+	New-MgUser -AccountEnabled $params.accountEnabled -DisplayName $params.displayName -MailNickname $params.mailNickname -UserPrincipalName $params.userPrincipalNam -PasswordProfile $params.passwordProfile
+}
